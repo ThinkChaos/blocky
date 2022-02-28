@@ -30,6 +30,7 @@ type Server struct {
 	httpListeners  []net.Listener
 	httpsListeners []net.Listener
 	queryResolver  resolver.Resolver
+	redisClient    *redis.Client
 	cfg            *config.Config
 	httpMux        *chi.Mux
 }
@@ -80,22 +81,23 @@ func NewServer(cfg *config.Config) (server *Server, err error) {
 
 	metrics.RegisterEventListeners()
 
-	redisClient, redisErr := redis.New(&cfg.Redis)
-	if redisErr != nil && cfg.Redis.Required {
-		return nil, redisErr
+	redisClient, err := redis.New(&cfg.Redis)
+	if err != nil {
+		return nil, err
 	}
 
-	queryResolver, queryError := createQueryResolver(cfg, redisClient)
-	if queryError != nil {
-		return nil, queryError
+	queryResolver, err := createQueryResolver(cfg, redisClient)
+	if err != nil {
+		return nil, err
 	}
 
 	server = &Server{
 		dnsServers:     dnsServers,
-		queryResolver:  queryResolver,
-		cfg:            cfg,
 		httpListeners:  httpListeners,
 		httpsListeners: httpsListeners,
+		queryResolver:  queryResolver,
+		redisClient:    redisClient,
+		cfg:            cfg,
 		httpMux:        router,
 	}
 
@@ -106,7 +108,7 @@ func NewServer(cfg *config.Config) (server *Server, err error) {
 
 	registerResolverAPIEndpoints(router, queryResolver)
 
-	return server, err
+	return server, nil
 }
 
 func createHTTPListeners(cfg *config.Config) (httpListeners []net.Listener, httpsListeners []net.Listener, err error) {
@@ -305,6 +307,10 @@ func (s *Server) Start() {
 // Stop stops the server
 func (s *Server) Stop() {
 	logger().Info("Stopping server")
+
+	if s.redisClient != nil {
+		s.redisClient.Close()
+	}
 
 	for _, server := range s.dnsServers {
 		if err := server.Shutdown(); err != nil {

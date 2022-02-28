@@ -509,16 +509,14 @@ var _ = Describe("Running DNS server", func() {
 				defer func() { Log().ExitFunc = nil }()
 
 				_, err := NewServer(&cfg)
-
 				Expect(err).Should(Succeed())
 			})
 			It("can't be created if redis server is unavailable", func() {
 				defer func() { Log().ExitFunc = nil }()
 
-				cfg.Redis.Required = true
+				cfg.Redis.Enable = true
 
 				_, err := NewServer(&cfg)
-
 				Expect(err).ShouldNot(Succeed())
 			})
 		})

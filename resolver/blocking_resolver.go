@@ -84,7 +84,6 @@ type BlockingResolver struct {
 	status              *status
 	clientGroupsBlock   map[string][]string
 	redisClient         *redis.Client
-	redisEnabled        bool
 	fqdnIPCache         expirationcache.ExpiringCache
 }
 
@@ -138,10 +137,9 @@ func NewBlockingResolver(cfg config.BlockingConfig, redis *redis.Client) (Chaine
 		},
 		clientGroupsBlock: cgb,
 		redisClient:       redis,
-		redisEnabled:      (redis != nil),
 	}
 
-	if res.redisEnabled {
+	if res.redisClient != nil {
 		setupRedisEnabledSubscriber(res)
 	}
 
@@ -202,7 +200,7 @@ func (r *BlockingResolver) retrieveAllBlockingGroups() []string {
 func (r *BlockingResolver) EnableBlocking() {
 	r.internalEnableBlocking()
 
-	if r.redisEnabled {
+	if r.redisClient != nil {
 		r.redisClient.PublishEnabled(&redis.EnabledMessage{State: true})
 	}
 }
@@ -219,7 +217,7 @@ func (r *BlockingResolver) internalEnableBlocking() {
 // DisableBlocking deactivates the blocking for a particular duration (or forever if 0).
 func (r *BlockingResolver) DisableBlocking(duration time.Duration, disableGroups []string) error {
 	err := r.internalDisableBlocking(duration, disableGroups)
-	if err == nil && r.redisEnabled {
+	if err == nil && r.redisClient != nil {
 		r.redisClient.PublishEnabled(&redis.EnabledMessage{
 			State:    false,
 			Duration: duration,

@@ -28,7 +28,6 @@ type CachingResolver struct {
 	prefetchThreshold                int
 	prefetchingNameCache             expirationcache.ExpiringCache
 	redisClient                      *redis.Client
-	redisEnabled                     bool
 }
 
 // cacheValue includes query answer and prefetch flag
@@ -44,12 +43,11 @@ func NewCachingResolver(cfg config.CachingConfig, redis *redis.Client) ChainedRe
 		maxCacheTimeSec:   int(time.Duration(cfg.MaxCachingTime).Seconds()),
 		cacheTimeNegative: time.Duration(cfg.CacheTimeNegative),
 		redisClient:       redis,
-		redisEnabled:      (redis != nil),
 	}
 
 	configureCaches(c, &cfg)
 
-	if c.redisEnabled {
+	if c.redisClient != nil {
 		setupRedisCacheSubscriber(c)
 		c.redisClient.GetRedisCache()
 	}
@@ -199,7 +197,7 @@ func (r *CachingResolver) Resolve(request *model.Request) (response *model.Respo
 		response, err = r.next.Resolve(request)
 
 		if err == nil {
-			r.putInCache(cacheKey, response, false, r.redisEnabled)
+			r.putInCache(cacheKey, response, false, true)
 		}
 	}
 

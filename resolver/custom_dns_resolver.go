@@ -100,6 +100,8 @@ func (r *CustomDNSResolver) processRequest(request *model.Request) *model.Respon
 					"domain": domain,
 				}).Debugf("returning custom dns entry")
 
+				response.Authoritative = true
+
 				return &model.Response{Res: response, RType: model.ResponseTypeCUSTOMDNS, Reason: "CUSTOM DNS"}
 			}
 

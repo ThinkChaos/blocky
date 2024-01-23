@@ -5,6 +5,11 @@
     "aliases": []
   },
   {
+    "version": "fix-serv-fail-error",
+    "title": "fix-serv-fail-error",
+    "aliases": []
+  },
+  {
     "version": "fix-authoritative-custom-dns",
     "title": "fix-authoritative-custom-dns",
     "aliases": []

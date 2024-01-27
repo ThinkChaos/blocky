@@ -10,6 +10,11 @@
     "aliases": []
   },
   {
+    "version": "fix-ios",
+    "title": "fix-ios",
+    "aliases": []
+  },
+  {
     "version": "fix-authoritative-custom-dns",
     "title": "fix-authoritative-custom-dns",
     "aliases": []

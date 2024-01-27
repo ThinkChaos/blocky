@@ -109,7 +109,8 @@ func (r *CustomDNSResolver) processRequest(request *model.Request) *model.Respon
 				break
 			}
 
-			// return NOERROR with empty result
+			// return NXDOMAIN
+			response.Rcode = dns.RcodeNameError
 			return &model.Response{Res: response, RType: model.ResponseTypeCUSTOMDNS, Reason: "CUSTOM DNS"}
 		}
 

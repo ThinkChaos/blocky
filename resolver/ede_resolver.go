@@ -44,6 +44,10 @@ func (r *EDEResolver) Resolve(ctx context.Context, request *model.Request) (*mod
 
 // addExtraReasoning adds the reason for the response as EDNS0 option
 func (r *EDEResolver) addExtraReasoning(res *model.Response) {
+	if res.Res.Rcode == dns.RcodeSuccess {
+		return
+	}
+
 	infocode := res.RType.ToExtendedErrorCode()
 
 	if infocode == dns.ExtendedErrorCodeOther {

@@ -25,6 +25,11 @@
     "aliases": []
   },
   {
+    "version": "docs-installation-tweaks",
+    "title": "docs-installation-tweaks",
+    "aliases": []
+  },
+  {
     "version": "v0.23",
     "title": "v0.23",
     "aliases": [

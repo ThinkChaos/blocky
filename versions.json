@@ -20,6 +20,11 @@
     "aliases": []
   },
   {
+    "version": "fix-no-log-db-pass",
+    "title": "fix-no-log-db-pass",
+    "aliases": []
+  },
+  {
     "version": "fix-ios",
     "title": "fix-ios",
     "aliases": []

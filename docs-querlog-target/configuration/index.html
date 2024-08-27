@@ -2760,14 +2760,14 @@ Parsing is handled not by Blocky, but third-party libraries, therefore the full 
 <tr>
 <td>MySQL</td>
 <td><a href="https://github.com/go-sql-driver/mysql#dsn-data-source-name">Go MySQL driver Data Source Name</a></td>
-<td><code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code></td>
+<td><code>[username[:password]@][protocol[(host[:port])]]/dbname[?param1=value1[&amp;paramN=valueN]]</code></td>
 <td><code>username:password@tcp(localhost:3306)/blocky_query_log?timeout=15s</code></td>
 </tr>
 <tr>
 <td>PostgreSQL</td>
 <td><a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a></td>
-<td><code>postgres://username:password@host:port/dbname?param=value</code></td>
-<td><code>postgres://username:password@localhost:5432/blocky_query_log</code></td>
+<td><code>postgres://[username[:password]@][host[:port]]/dbname[?param1=value1[&amp;paramN=valueN]]</code></td>
+<td><code>postgres://username@localhost:5432/blocky_query_log</code></td>
 </tr>
 <tr>
 <td>Timescale</td>
@@ -2777,6 +2777,10 @@ Parsing is handled not by Blocky, but third-party libraries, therefore the full 
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>For increased security, it is recommended to configure the password for a PostgreSQL/Timescale connection via the <code>PGPASSFILE</code> environment variable.  </p>
 <h3 id="examples">Examples</h3>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -2796,7 +2800,7 @@ Parsing is handled not by Blocky, but third-party libraries, therefore the full 
 <p><strong>MySQL Database</strong></p>
 <div class="highlight"><pre><span></span><code><span class="nt">queryLog</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
-<span class="w">  </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username:password@tcp(localhost:3306)/blocky_query_log?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&amp;timeout=15s</span>
+<span class="w">  </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;username:password@tcp(localhost:3306)/blocky_query_log?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&amp;timeout=15s&#39;</span>
 <span class="w">  </span><span class="nt">logRetentionDays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
 </code></pre></div>
 </div>

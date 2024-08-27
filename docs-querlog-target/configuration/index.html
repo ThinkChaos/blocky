@@ -613,6 +613,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#database-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database URLs
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1186,6 +1195,15 @@
   <a href="#query-log-fields" class="md-nav__link">
     <span class="md-ellipsis">
       Query log fields
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-urls" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database URLs
     </span>
   </a>
   
@@ -2618,8 +2636,7 @@ in Excel or OpenOffice Calc) or MySQL/MariaDB database.</p>
 <h3 id="query-log-types">Query log types</h3>
 <p>You can select one of following query log types:</p>
 <ul>
-<li><code>mysql</code>: log each query in the external MySQL/MariaDB database<br />
-<code>target</code> format docs: <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a>.</li>
+<li><code>mysql</code>: log each query in the external MySQL/MariaDB database</li>
 <li><code>postgresql</code>: log each query in the external PostgreSQL database</li>
 <li><code>timescale</code>: log each query in the external Timescale database</li>
 <li><code>csv</code>: log into <abbr title="Comma-separated values">CSV</abbr> file (one per day)</li>
@@ -2709,6 +2726,14 @@ in Excel or OpenOffice Calc) or MySQL/MariaDB database.</p>
 <p>Please ensure, that the log directory is writable or database exists. If you use docker, please ensure, that the directory is properly
 mounted (e.g. volume)</p>
 </div>
+<h3 id="database-urls">Database URLs</h3>
+<p>To connect to a database, you must provide a URL like value for <code>target</code>.<br />
+The exact format depends on the DB type, and parsing is handled not by Blocky but third-party libraries:</p>
+<ul>
+<li><code>mysql</code>: See Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a></li>
+<li><code>postgresql</code>: See <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a></li>
+<li><code>timescale</code>: Same as <code>postgresql</code></li>
+</ul>
 <p>example for <abbr title="Comma-separated values">CSV</abbr> format with limited logging information</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>

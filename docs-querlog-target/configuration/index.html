@@ -2618,24 +2618,24 @@ in Excel or OpenOffice Calc) or MySQL/MariaDB database.</p>
 <h3 id="query-log-types">Query log types</h3>
 <p>You can select one of following query log types:</p>
 <ul>
-<li><code>mysql</code> - log each query in the external MySQL/MariaDB database
-  See the MySQL client documentation for <code>target</code> format: <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a>.</li>
-<li><code>postgresql</code> - log each query in the external PostgreSQL database</li>
-<li><code>timescale</code> - log each query in the external Timescale database</li>
-<li><code>csv</code> - log into <abbr title="Comma-separated values">CSV</abbr> file (one per day)</li>
-<li><code>csv-client</code> - log into <abbr title="Comma-separated values">CSV</abbr> file (one per day and per client)</li>
-<li><code>console</code> - log into console output</li>
-<li><code>none</code> - do not log any queries</li>
+<li><code>mysql</code>: log each query in the external MySQL/MariaDB database<br />
+<code>target</code> format docs: <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a>.</li>
+<li><code>postgresql</code>: log each query in the external PostgreSQL database</li>
+<li><code>timescale</code>: log each query in the external Timescale database</li>
+<li><code>csv</code>: log into <abbr title="Comma-separated values">CSV</abbr> file (one per day)</li>
+<li><code>csv-client</code>: log into <abbr title="Comma-separated values">CSV</abbr> file (one per day and per client)</li>
+<li><code>console</code>: log into console output</li>
+<li><code>none</code>: do not log any queries</li>
 </ul>
 <h3 id="query-log-fields">Query log fields</h3>
 <p>You can choose which information from processed <abbr title="Domain Name System">DNS</abbr> request and response should be logged in the target system. You can define one or more of following fields:</p>
 <ul>
-<li><code>clientIP</code> - origin IP address from the request</li>
-<li><code>clientName</code> - resolved client name(s) from the origins request</li>
-<li><code>responseReason</code> - reason for the response (e.g. from which upstream resolver), response type and code</li>
-<li><code>responseAnswer</code> - returned <abbr title="Domain Name System">DNS</abbr> answer</li>
-<li><code>question</code> - <abbr title="Domain Name System">DNS</abbr> question from the request</li>
-<li><code>duration</code> - request processing time in milliseconds</li>
+<li><code>clientIP</code>: origin IP address from the request</li>
+<li><code>clientName</code>: resolved client name(s) from the origins request</li>
+<li><code>responseReason</code>: reason for the response (e.g. from which upstream resolver), response type and code</li>
+<li><code>responseAnswer</code>: returned <abbr title="Domain Name System">DNS</abbr> answer</li>
+<li><code>question</code>: <abbr title="Domain Name System">DNS</abbr> question from the request</li>
+<li><code>duration</code>: request processing time in milliseconds</li>
 </ul>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>

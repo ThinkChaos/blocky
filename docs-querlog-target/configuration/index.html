@@ -2746,25 +2746,11 @@ mounted (e.g. volume)</p>
 </div>
 <h3 id="database-urls">Database URLs</h3>
 <p>To connect to a database, you must provide a URL like value for <code>target</code>. The exact format and supported parameters depends on the DB type.
-Parsing is handled not by Blocky, but third-party libraries, therefore the full documentation is external:</p>
-<ul>
-<li>
-<p><code>mysql</code>:<br />
-  Format: <code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code><br />
-  Example: <code>username:password@tcp(localhost:3306)/blocky_query_log?timeout=15s</code><br />
-  Full docs: <a href="https://github.com/go-sql-driver/mysql#dsn-data-source-name">Go MySQL driver Data Source Name</a></p>
-</li>
-<li>
-<p><code>postgresql</code>: <br />
-  Format: <code>postgres://username:password@host:port/dbname?param=value</code><br />
-  Example: <code>postgres://username:password@localhost:5432/blocky_query_log</code><br />
-    Note that for increased security, it is recommended to configure the password via the <code>PGPASSFILE</code> environment variable.<br />
-  Full docs: <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a> </p>
-</li>
-<li>
-<p><code>timescale</code>: Same as <code>postgresql</code></p>
-</li>
-</ul>
+Parsing is handled not by Blocky, but third-party libraries, therefore the full documentation is external.</p>
+<p>| Database   | Full docs                                                                                       | Format                                                                                  | Example                                                             |
+| MySQL      | <a href="https://github.com/go-sql-driver/mysql#dsn-data-source-name">Go MySQL driver Data Source Name</a> | <code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code>| <code>username:password@tcp(localhost:3306)/blocky_query_log?timeout=15s</code>|
+| PostgreSQL | <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a>                | <code>postgres://username:password@host:port/dbname?param=value</code>                             | <code>postgres://username:password@localhost:5432/blocky_query_log</code>      |
+| Timescale  | See PostgreSQL above                                                                            |                                                                                         |                                                                     |</p>
 <h3 id="examples">Examples</h3>
 <div class="admonition example">
 <p class="admonition-title">Example</p>

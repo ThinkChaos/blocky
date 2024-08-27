@@ -2748,11 +2748,20 @@ mounted (e.g. volume)</p>
 <p>To connect to a database, you must provide a URL like value for <code>target</code>. The exact format and supported parameters depends on the DB type.
 Parsing is handled not by Blocky, but third-party libraries, therefore the documentation is external:</p>
 <ul>
-<li><code>mysql</code>: see Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a>
-  Example: ``</li>
-<li><code>postgresql</code>: see <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a><br />
-  Example: ``</li>
-<li><code>timescale</code>: Same as <code>postgresql</code></li>
+<li>
+<p><code>mysql</code>: see Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a><br />
+  Basic format: <code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code><br />
+  Example: <code>username:password@tcp(localhost:3306)/blocky_query_log?timeout=15s</code></p>
+</li>
+<li>
+<p><code>postgresql</code>: see <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a><br />
+  Basic format: <code>postgres://username:password@host:port/dbname?param=value</code><br />
+  Example: <code>postgres://username:password@localhost:5432/blocky_query_log?param=value</code><br />
+  Note that password is recommended to be configured via the <code>PGPASSFILE</code> env var.</p>
+</li>
+<li>
+<p><code>timescale</code>: Same as <code>postgresql</code></p>
+</li>
 </ul>
 <h3 id="examples">Examples</h3>
 <p><abbr title="Comma-separated values">CSV</abbr> format with limited logging information:</p>
@@ -2773,7 +2782,7 @@ Parsing is handled not by Blocky, but third-party libraries, therefore the docum
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="nt">queryLog</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
-<span class="w">  </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">db_user:db_password@tcp(db_host_or_ip:3306)/db_user?charset=utf8mb4&amp;parseTime=True&amp;loc=Local</span>
+<span class="w">  </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">username:password@tcp(localhost:3306)/blocky_query_log?charset=utf8mb4&amp;parseTime=True&amp;loc=Local&amp;timeout=15s</span>
 <span class="w">  </span><span class="nt">logRetentionDays</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span>
 </code></pre></div>
 </div>

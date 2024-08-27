@@ -50,6 +50,11 @@
     "aliases": []
   },
   {
+    "version": "docs-querlog-target",
+    "title": "docs-querlog-target",
+    "aliases": []
+  },
+  {
     "version": "docs-installation-tweaks",
     "title": "docs-installation-tweaks",
     "aliases": []

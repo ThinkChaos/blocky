@@ -2750,14 +2750,14 @@ Parsing is handled not by Blocky, but third-party libraries, therefore the docum
 <ul>
 <li>
 <p><code>mysql</code>: see Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a><br />
-  Basic format: <code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code><br />
+  Format: <code>[username[:password]@][protocol[(host:port)]]/dbname[?param1=value1&amp;...&amp;paramN=valueN]</code><br />
   Example: <code>username:password@tcp(localhost:3306)/blocky_query_log?timeout=15s</code></p>
 </li>
 <li>
 <p><code>postgresql</code>: see <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a><br />
-  Basic format: <code>postgres://username:password@host:port/dbname?param=value</code><br />
-  Example: <code>postgres://username:password@localhost:5432/blocky_query_log?param=value</code><br />
-  Note that password is recommended to be configured via the <code>PGPASSFILE</code> env var.</p>
+  Format: <code>postgres://username:password@host:port/dbname?param=value</code><br />
+  Example: <code>postgres://username:password@localhost:5432/blocky_query_log</code><br />
+  Note that for increased security, it is recommended to configure the password via the <code>PGPASSFILE</code> environment variable.</p>
 </li>
 <li>
 <p><code>timescale</code>: Same as <code>postgresql</code></p>

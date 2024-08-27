@@ -8,10 +8,10 @@ info:
 
     ## Features
 
-    - **Blocking** - Blocking of DNS queries with external lists (Ad-block, malware) and whitelisting
+    - **Blocking** - Blocking of DNS queries with external lists (Ad-block, malware) and allowlisting
 
-      - Definition of black and white lists per client group (Kids, Smart home devices, etc.)
-      - Periodical reload of external black and white lists
+      - Definition of allow/denylists per client group (Kids, Smart home devices, etc.)
+      - Periodical reload of external allow/denylists
       - Regex support
       - Blocking of request domain, response CNAME (deep CNAME inspection) and response IP addresses (against IP lists)
 
@@ -48,7 +48,8 @@ info:
 
       - [Prometheus](https://prometheus.io/) metrics
       - Prepared [Grafana](https://grafana.com/) dashboards (Prometheus and database)
-      - Logging of DNS queries per day / per client in CSV format or MySQL/MariaDB/PostgreSQL database - easy to analyze
+      - Logging of DNS queries per day / per client in CSV format or MySQL/MariaDB/PostgreSQL/Timescale database - easy to
+        analyze
       - Various REST API endpoints
       - CLI tool
 

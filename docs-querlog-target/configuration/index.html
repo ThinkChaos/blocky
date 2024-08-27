@@ -622,6 +622,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1204,6 +1213,15 @@
   <a href="#database-urls" class="md-nav__link">
     <span class="md-ellipsis">
       Database URLs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
     </span>
   </a>
   
@@ -2727,15 +2745,17 @@ in Excel or OpenOffice Calc) or MySQL/MariaDB database.</p>
 mounted (e.g. volume)</p>
 </div>
 <h3 id="database-urls">Database URLs</h3>
-<p>To connect to a database, you must provide a URL like value for <code>target</code>.<br />
-The exact format depends on the DB type, and parsing is handled not by Blocky but third-party libraries:</p>
+<p>To connect to a database, you must provide a URL like value for <code>target</code>. The exact format and supported parameters depends on the DB type.
+Parsing is handled not by Blocky, but third-party libraries, therefore the documentation is external:</p>
 <ul>
-<li><code>mysql</code>: See Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a></li>
-<li><code>postgresql</code>: See <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a></li>
+<li><code>mysql</code>: Go MySQL driver <a href="https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name">Data Source Name</a>
+  Example: ``</li>
+<li><code>postgresql</code>: <a href="https://pkg.go.dev/github.com/jackc/pgx/v5/pgconn#ParseConfig">pgx.ParseConfig</a><br />
+  Example: ``</li>
 <li><code>timescale</code>: Same as <code>postgresql</code></li>
 </ul>
-<p>example for <abbr title="Comma-separated values">CSV</abbr> format with limited logging information</p>
-<div class="admonition example">
+<h3 id="examples">Examples</h3>
+<div class="admonition example csv format with limited logging information">
 <p class="admonition-title">Example</p>
 <div class="highlight"><pre><span></span><code><span class="nt">queryLog</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">csv</span>

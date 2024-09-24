@@ -15,6 +15,7 @@ import (
 
 	"github.com/miekg/dns"
 	"github.com/sirupsen/logrus"
+	"golang.org/x/net/nettest"
 
 	. "github.com/0xERR0R/blocky/config/migration"
 	"github.com/0xERR0R/blocky/log"
@@ -261,6 +262,14 @@ type Config struct {
 		StartVerifyUpstream *bool           `yaml:"startVerifyUpstream"`
 		DoHUserAgent        *string         `yaml:"dohUserAgent"`
 	} `yaml:",inline"`
+}
+
+func (cfg *Config) SetDefaults() {
+	log.Log().Warn("detecting IPv6 functionality")
+	if !nettest.SupportsIPv6() {
+		log.Log().Warn("IPv6 does not seem functional, using connectIPVersion=IPv4")
+		cfg.ConnectIPVersion = IPVersionV4
+	}
 }
 
 type Ports struct {

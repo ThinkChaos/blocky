@@ -1855,18 +1855,20 @@ configuration properties as <a href="../config.yml">JSON</a>.</p>
 <span class="nt">ports</span><span class="p">:</span>
 <span class="w">  </span><span class="c1"># optional: DNS listener port(s) and bind ip address(es)</span>
 <span class="w">  </span><span class="c1"># default: 53 (UDP and TCP)</span>
+<span class="w">  </span><span class="c1"># example: [53, :53, 127.0.0.1:53, [::1]:53]</span>
 <span class="w">  </span><span class="nt">dns</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">53</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;localhost:5353&quot;</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;[::1]:5300&quot;</span>
-<span class="w">  </span><span class="c1"># optional: Port(s) and bind ip address(es) for DoT (DNS-over-TLS) listener. Example: 853, 127.0.0.1:853</span>
-<span class="w">  </span><span class="c1"># Same format as `dns`</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">localhost:5353</span>
+<span class="w">  </span><span class="c1"># optional: Port(s) and bind ip address(es) for DoT (DNS-over-TLS) listener.</span>
+<span class="w">  </span><span class="c1">#           Supports the same formats as `dns` above.</span>
+<span class="w">  </span><span class="c1"># default: none</span>
+<span class="w">  </span><span class="c1"># example: [853, :853, 127.0.0.1:853, [::1]:853]</span>
 <span class="w">  </span><span class="nt">tls</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">853</span>
-<span class="w">  </span><span class="c1"># optional: Port(s) and optional bind ip address(es) to serve HTTPS used for prometheus metrics, pprof, REST API, DoH... If you wish to specify a specific IP, you can do so such as 192.168.0.1:443. Example: 443, :443, 127.0.0.1:443,[::1]:443</span>
-<span class="w">  </span><span class="c1"># Same format as `dns`</span>
+<span class="w">  </span><span class="c1"># optional: Port(s) and optional bind ip address(es) to serve HTTPS used for prometheus metrics, pprof, REST API, DoH...</span>
+<span class="w">  </span><span class="c1"># example: [443, :443, 127.0.0.1:443, [::1]:443]</span>
 <span class="w">  </span><span class="nt">https</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
-<span class="w">  </span><span class="c1"># optional: Port(s) and optional bind ip address(es) to serve HTTP used for prometheus metrics, pprof, REST API, DoH... If you wish to specify a specific IP, you can do so such as 192.168.0.1:4000. Example: 4000, :4000, 127.0.0.1:4000,[::1]:4000</span>
-<span class="w">  </span><span class="c1"># Same format as `dns`</span>
+<span class="w">  </span><span class="c1"># optional: Port(s) and optional bind ip address(es) to serve HTTP used for prometheus metrics, pprof, REST API, DoH...</span>
+<span class="w">  </span><span class="c1"># example: [4000, :4000, 127.0.0.1:4000, [::1]:4000]</span>
 <span class="w">  </span><span class="nt">http</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4000</span>
 
 <span class="c1"># optional: logging configuration</span>
